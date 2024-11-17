@@ -250,7 +250,7 @@ function draw() {
   }
   if (loadingdata) {
     loading();
-    animation.open = 100;
+    animation.open = width/5;
   } else {
     if (afterloading) {
       if (animation.open > max([width, height])) {
