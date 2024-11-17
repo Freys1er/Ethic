@@ -15,7 +15,6 @@ function setup() {
     "csv",
     () => (loadingdata = false)
   );
-  textFont("Roboto");
   images.google = loadImage("images/Google_logo.svg");
   images.account = loadImage("images/Account_icon.svg");
   images.home = loadImage("images/Home_icon.svg");
@@ -226,6 +225,7 @@ function panel(x, y, t) {
   rect(width * 0.95 - x, height * 0.35 - y, x, y, 20);
 }
 function draw() {
+  textFont("Roboto");
   if (redirect !== page && !mouseIsPressed) {
     storeItem("PAGE", redirect);
     page = redirect;
