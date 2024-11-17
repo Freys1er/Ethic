@@ -12,7 +12,7 @@ let images = {};
 var webAuth = new auth0.WebAuth({
   domain: 'dev-rvtffpsqfjtp1zpw.ca.auth0.com',
   clientID: 'PolfEoXdOSpRRLNC6Nddahbcq6g9lybF',
-  redirectUri: 'freys1er.github.io/Ethic/callback',
+  redirectUri: 'freys1er.github.io/Ethic',
   audience: 'https://' + 'dev-rvtffpsqfjtp1zpw.ca.auth0.com' + '/userinfo',
   responseType: 'token id_token',
   scope: 'openid profile email'
