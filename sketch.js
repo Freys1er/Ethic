@@ -8,6 +8,51 @@ let scroll = {
 let sign_in_field;
 let images = {};
 
+// Initialize the Auth0 client
+var webAuth = new auth0.WebAuth({
+  domain: 'dev-rvtffpsqfjtp1zpw.ca.auth0.com',
+  clientID: 'PolfEoXdOSpRRLNC6Nddahbcq6g9lybF',
+  redirectUri: window.location.origin + '/callback',
+  audience: 'https://' + 'dev-rvtffpsqfjtp1zpw.ca.auth0.com' + '/userinfo',
+  responseType: 'token id_token',
+  scope: 'openid profile email'
+});
+
+// Function to handle login
+function login() {
+  webAuth.authorize({
+    connection: 'google-oauth2'
+  });
+}
+
+// Function to handle authentication response
+function handleAuthentication() {
+  webAuth.parseHash(function(err, authResult) {
+    if (authResult && authResult.accessToken && authResult.idToken) {
+      window.location.hash = '';
+      setSession(authResult);
+    } else if (err) {
+      console.log(err);
+      alert('Error: ' + err.error + '. Check the console for further details.');
+    }
+  });
+}
+
+// Function to set session
+function setSession(authResult) {
+  var expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+  localStorage.setItem('access_token', authResult.accessToken);
+  localStorage.setItem('id_token', authResult.idToken);
+  localStorage.setItem('expires_at', expiresAt);
+}
+
+// Handle callback URL
+window.addEventListener('load', function() {
+  if (window.location.pathname === '/callback') {
+    handleAuthentication();
+  }
+});
+
 function setup() {
   data = loadTable(
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRduFxvAWf-KVSQ0OTYEc4e9QQaISR5qsVBgkMEtVcNNFvPFho6DOS40MZnNhm-ECcvcfurJERjHHax/pub?gid=1848718501&single=true&output=csv",
