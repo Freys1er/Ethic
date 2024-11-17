@@ -14,7 +14,7 @@ function setup() {
     "csv",
     () => (loadingdata = false)
   );
-  font("Roboto");
+  textFont("Roboto");
   images.google = loadImage("images/Google_logo.svg");
   images.account = loadImage("images/Account_icon.svg");
   images.home = loadImage("images/Home_icon.svg");
