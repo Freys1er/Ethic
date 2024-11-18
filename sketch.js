@@ -581,11 +581,10 @@ function draw() {
       ) {
         fill(100);
         if (mouseIsPressed) {
-          login();
-          //sessionid = random(0, 999999999999999999);
-          //sendData('{"sessionid":' + sessionid + ',"type":"sign_in"}');
-          //storeItem("SessionID", sessionid);
-          //storeItem("PAGE", "Home");
+          sessionid = random(0, 999999999999999999);
+          sendData('{"sessionid":' + sessionid + ',"type":"sign_in"}');
+          storeItem("SessionID", sessionid);
+          storeItem("PAGE", "Home");
         }
       }
 
